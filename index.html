@@ -94,16 +94,24 @@
 
       function goRight() {
         headX = headX + 1;
+        if (headX >= config.width) {
+          // Snake goes past the right side
+          headX = 0; // Wrap around to the left side
+        }
       }
 
       function goLeft() {
         headX = headX - 1;
+        if (headX < 0) {
+          // Snake goes past the left side
+          headX = config.width - 1; // Wrap around to the right side
+        }
       }
 
       function startGame() {
         generatefood();
         if (!intervalId) {
-          intervalId = setInterval(gameLoop, 200);
+          intervalId = setInterval(gameLoop, 100);
         }
       }
 
